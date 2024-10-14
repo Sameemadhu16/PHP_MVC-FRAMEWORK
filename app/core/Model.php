@@ -49,15 +49,33 @@ class Model
         $data = array_merge($data, $data_not);
 
         $result = $this->query($query, $data);
+
         if ($result)
             return $result[0];
 
         return false;
     }
-    public function insert($data, $data_not = []) {}
+    public function insert($data)
+    {
+        $keys = array_keys($data);
+        $query = "insert into $this->table (" . implode(",", $keys) . ") values (:" . implode(",:", $keys) . ")";
+        $this->query($query, $data);
+
+        return false;
+    }
 
 
     public function update($id, $data, $id_column = 'id') {}
 
-    public function delete($id, $id_column = 'id') {}
+    public function delete($id, $id_column = 'id')
+    {
+
+        $data[$id_column] = $id;
+        $query = "delete from $this->table where $id_column = :$id_column ";
+
+        $this->query($query, $data);
+
+
+        return false;
+    }
 }

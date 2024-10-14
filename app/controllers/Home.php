@@ -9,9 +9,8 @@ class Home extends Controller
     {
         $model = new Model;
         
-        $arr['name'] = "Eathrone";
-       
-        $result = $model->where($arr);
+
+        $result = $model->delete(7);
         
         show($result);
 
