@@ -8,8 +8,12 @@ class Home extends Controller
     public function index()
     {
         $model = new Model;
-        $model->test();
-        echo "This is the home controller";
+        
+        $arr['name'] = "Eathrone";
+       
+        $result = $model->where($arr);
+        
+        show($result);
 
         $this->view('home');
 
