@@ -7,15 +7,10 @@ class Home extends Controller
 
     public function index()
     {
-        $model = new Model;
-        $arr['name'] = 'Sam';
-        $arr['age'] = 21;
-
-        $result = $model->update(2,$arr);
+        $user = new User;
         
+        $result = $user->findAll();
         show($result);
-
         $this->view('home');
-
     }
 }
